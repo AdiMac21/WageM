@@ -8,8 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 
+import com.example.adrian.wagem.Adapters.CatGridAdapter;
+import com.example.adrian.wagem.Model.Categories;
+import com.example.adrian.wagem.Model.Category;
+import com.example.adrian.wagem.Model.Expense;
 import com.example.adrian.wagem.Model.User;
 
 public class Dashboard extends AppCompatActivity {
@@ -22,6 +27,8 @@ public class Dashboard extends AppCompatActivity {
     private User user;
     private Button button;
     private Dialog dialog;
+    private Categories categories;
+    private GridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,25 @@ public class Dashboard extends AppCompatActivity {
             firstRun = false;
         }
         createUser();
+        generateCategories();
+        linkUi();
+    }
+
+    private void linkUi() {
+        gridView= (GridView) findViewById(R.id.grid);
+        CatGridAdapter adapter=new CatGridAdapter(Dashboard.this,categories);
+        gridView.setAdapter(adapter);
+
+    }
+
+    private void generateCategories() {
+        categories=new Categories();
+        Category foodAndBeverage=new Category("Food&Beverage","android.resource://com.example.adrian.wagem/drawable/french_fries");
+        categories.getCategories().add(foodAndBeverage);
+        Expense expense=new Expense("Mancare",50);
+        categories.getCategories().get(0).getItems().add(expense);
+        categories.getCategories().get(0).setSum(+50);
+
     }
 
     private void createUser() {
