@@ -8,11 +8,21 @@ public class User {
     private String name;
     private int salary;
     private int day;
+    private int remMon;
 
     public User(String name, int salary, int day) {
         this.name = name;
         this.salary = salary;
         this.day = day;
+
+    }
+
+    public int getRemMon() {
+        return remMon;
+    }
+
+    public void setRemMon(int remMon) {
+        this.remMon = remMon;
     }
 
     public String getName() {

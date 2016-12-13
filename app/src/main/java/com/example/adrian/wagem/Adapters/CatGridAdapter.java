@@ -47,8 +47,7 @@ public class CatGridAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View gridView=new View(context);;
-        View fakeview;
+        View gridView=new View(context);
         if (convertView == null) {
             if (categories.getCategories().get(position).getItems().size() > 0) {
 
@@ -60,7 +59,7 @@ public class CatGridAdapter extends BaseAdapter {
                 Uri uri = Uri.parse(categories.getCategories().get(position).getIconName());
                 catImage.setImageURI(uri);
                 catName.setText(categories.getCategories().get(position).getName());
-                catSum.setText(String.valueOf(categories.getCategories().get(position).getSum()));
+                catSum.setText(String.valueOf(categories.getCategories().get(position).getSum())+" RON");
 
             }else{
                 gridView.setVisibility(View.GONE);
