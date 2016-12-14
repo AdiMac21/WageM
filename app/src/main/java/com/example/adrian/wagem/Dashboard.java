@@ -19,6 +19,7 @@ import com.example.adrian.wagem.Model.Categories;
 import com.example.adrian.wagem.Model.Category;
 import com.example.adrian.wagem.Model.Expense;
 import com.example.adrian.wagem.Model.User;
+import com.example.adrian.wagem.Util.GsonSave;
 
 public class Dashboard extends AppCompatActivity {
     private String MY_PREFS_NAME = "prefs";
@@ -38,12 +39,13 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
-        String restoredText = prefs.getString("name", null);
+        String restoredText = prefs.getString("categories", null);
         if (restoredText == null) {
             createDialog();
         }
+
         createUser();
-        generateCategories();
+        categories=loadCat();
         linkUi();
     }
 
@@ -55,9 +57,7 @@ public class Dashboard extends AppCompatActivity {
         progressBar.setProgressColor(Color.parseColor("#36282B"));
         progressBar.setBackgroundColor(Color.parseColor("#EAE9E9"));
         progressBar.setMax(user.getSalary());
-        progressBar.setProgress(3000);
-
-
+        progressBar.setProgress(user.getRemMon());
 
     }
 
@@ -65,11 +65,19 @@ public class Dashboard extends AppCompatActivity {
         categories = new Categories();
         Category foodAndBeverage = new Category("Food&Beverage", "android.resource://com.example.adrian.wagem/drawable/french_fries");
         Category bills = new Category("Bills", "android.resource://com.example.adrian.wagem/drawable/atm");
+        Category healthAndFitness = new Category("Health&Fitness", "android.resource://com.example.adrian.wagem/drawable/dumbbell");
+        Category transportation = new Category("Transportation", "android.resource://com.example.adrian.wagem/drawable/taxi");
+        Category gifts = new Category("Gifts", "android.resource://com.example.adrian.wagem/drawable/ticket");
+        Category shopping = new Category("Shopping", "android.resource://com.example.adrian.wagem/drawable/shirt");
+        Category entertainment = new Category("Entertainment", "android.resource://com.example.adrian.wagem/drawable/gamepad");
         categories.getCategories().add(foodAndBeverage);
         categories.getCategories().add(bills);
-        Expense expense = new Expense("Mancare", 50);
-        categories.getCategories().get(0).getItems().add(expense);
-        categories.getCategories().get(0).setSum(+50);
+        categories.getCategories().add(healthAndFitness);
+        categories.getCategories().add(transportation);
+        categories.getCategories().add(gifts);
+        categories.getCategories().add(shopping);
+        categories.getCategories().add(entertainment);
+        saveCat();
 
     }
 
@@ -98,16 +106,31 @@ public class Dashboard extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                editor.putString("name", name.getText().toString());
-                editor.putInt("salary", Integer.parseInt(salary.getText().toString()));
-                editor.putInt("day", Integer.parseInt(day.getText().toString()));
-                editor.putInt("remMon", Integer.parseInt(salary.getText().toString()));
-                editor.commit();
+                saveUser();
+                generateCategories();
                 dialog.dismiss();
             }
         });
 
         dialog.show();
+    }
+    private void saveCat(){
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString("categories",GsonSave.serializeToJson(categories));
+        editor.commit();
+    }
+    private Categories loadCat(){
+        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+
+        String categories = prefs.getString("categories", "No name defined");
+        return GsonSave.deserializeFromJson(categories);
+    }
+    private void saveUser(){
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString("name", name.getText().toString());
+        editor.putInt("salary", Integer.parseInt(salary.getText().toString()));
+        editor.putInt("day", Integer.parseInt(day.getText().toString()));
+        editor.putInt("remMon", Integer.parseInt(salary.getText().toString()));
+        editor.commit();
     }
 }
