@@ -17,9 +17,9 @@
             android:id="@+id/wage_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:text="Remaining funds"
             android:textAlignment="center"
-            android:text="Remaining funds"/>
+            android:textSize="20sp" />
 
         <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
             android:id="@+id/progressBar"
@@ -32,15 +32,30 @@
 
     </LinearLayout>
 
-    <GridView
-        android:id="@+id/grid"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.3"
-        android:numColumns="2"
+        android:layout_weight="1.3">
+
+        <GridView
+            android:id="@+id/grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="2"
+            android:stretchMode="columnWidth">
 
 
-        android:stretchMode="columnWidth">
-
-    </GridView>
+        </GridView>
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textAlignment="center"
+            android:background="@drawable/circle"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:textStyle="bold"/>
+    </FrameLayout>
 </LinearLayout>

@@ -1,7 +1,6 @@
 
 package com.example.adrian.wagem;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,22 +11,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.example.adrian.wagem.Adapters.CatGridAdapter;
 import com.example.adrian.wagem.Model.Categories;
-import com.example.adrian.wagem.Model.Category;
-import com.example.adrian.wagem.Model.Expense;
 import com.example.adrian.wagem.Model.User;
-import com.example.adrian.wagem.Util.GsonSave;
 
-import static com.example.adrian.wagem.Util.LSCat.loadCat;
+import static com.example.adrian.wagem.Util.LoadSave.loadCat;
+import static com.example.adrian.wagem.Util.LoadSave.loadUser;
 
 public class Dashboard extends AppCompatActivity {
     private static String MY_PREFS_NAME = "prefs";
     private final Context context = this;
     private User user;
+    private Button buttonAdd;
     private Categories categories;
     private GridView gridView;
     private ProgressBar progressBar;
@@ -43,9 +40,16 @@ public class Dashboard extends AppCompatActivity {
             startActivity(intent);
         }
 
-        createUser();
+        user=loadUser(context);
         categories=loadCat(context);
         linkUi();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        user=loadUser(context);
+        categories=loadCat(context);
     }
 
     private void linkUi() {
@@ -57,20 +61,21 @@ public class Dashboard extends AppCompatActivity {
         progressBar.setBackgroundColor(Color.parseColor("#EAE9E9"));
         progressBar.setMax((float) user.getSalary());
         progressBar.setProgress((float) user.getRemMon());
+        buttonAdd= (Button) findViewById(R.id.button_add);
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,AddExpense.class);
+                intent.putExtra("categories",categories);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
 
     }
 
 
-    private void createUser() {
-        SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
 
-        String name=prefs.getString("name", "No name defined");
-        double salary=prefs.getFloat("salary", 0);
-        int day = prefs.getInt("day", 1);
-        user = new User(name, salary, day);
-        user.setRemMon(prefs.getFloat("remMon", 0));
-
-    }
 
 
 

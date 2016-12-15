@@ -1,10 +1,12 @@
 package com.example.adrian.wagem.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by Adrian on 12/10/2016.
  */
 
-public class User {
+public class User implements Serializable {
     private String name;
     private double salary;
     private int day;

@@ -13,7 +13,7 @@ import com.example.adrian.wagem.Model.Categories;
 import com.example.adrian.wagem.Model.Category;
 import com.example.adrian.wagem.Model.User;
 
-import static com.example.adrian.wagem.Util.LSCat.saveCat;
+import static com.example.adrian.wagem.Util.LoadSave.saveCat;
 
 public class OneTime extends AppCompatActivity {
     private String MY_PREFS_NAME = "prefs";
