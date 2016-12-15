@@ -48,14 +48,15 @@
         </GridView>
         <Button
             android:id="@+id/button_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:text="+"
+            android:textSize="22sp"
             android:textAlignment="center"
             android:background="@drawable/circle"
             android:layout_gravity="bottom|end"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="20dp"
-            android:textStyle="bold"/>
+            />
     </FrameLayout>
 </LinearLayout>
