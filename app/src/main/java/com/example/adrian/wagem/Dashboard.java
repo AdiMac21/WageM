@@ -21,13 +21,13 @@ import static com.example.adrian.wagem.Util.LoadSave.loadCat;
 import static com.example.adrian.wagem.Util.LoadSave.loadUser;
 
 public class Dashboard extends AppCompatActivity {
-    private static String MY_PREFS_NAME = "prefs";
+    static String MY_PREFS_NAME = "prefs";
     private final Context context = this;
     private User user;
     private Button buttonAdd;
     private Categories categories;
     private GridView gridView;
-    private ProgressBar progressBar;
+    private RoundCornerProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +50,17 @@ public class Dashboard extends AppCompatActivity {
         super.onResume();
         user=loadUser(context);
         categories=loadCat(context);
+        progressBar.setProgressColor(Color.parseColor("#36282B"));
+        progressBar.setBackgroundColor(Color.parseColor("#EAE9E9"));
+        progressBar.setMax((float) user.getSalary());
+        progressBar.setProgress((float) user.getRemMon());
     }
 
     private void linkUi() {
         gridView = (GridView) findViewById(R.id.grid);
         CatGridAdapter adapter = new CatGridAdapter(Dashboard.this, categories);
         gridView.setAdapter(adapter);
-        RoundCornerProgressBar progressBar = (RoundCornerProgressBar) findViewById(R.id.progressBar);
+        progressBar = (RoundCornerProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgressColor(Color.parseColor("#36282B"));
         progressBar.setBackgroundColor(Color.parseColor("#EAE9E9"));
         progressBar.setMax((float) user.getSalary());
