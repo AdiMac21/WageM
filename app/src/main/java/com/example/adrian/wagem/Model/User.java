@@ -6,22 +6,22 @@ package com.example.adrian.wagem.Model;
 
 public class User {
     private String name;
-    private int salary;
+    private double salary;
     private int day;
-    private int remMon;
+    private double remMon;
 
-    public User(String name, int salary, int day) {
+    public User(String name, double salary, int day) {
         this.name = name;
         this.salary = salary;
         this.day = day;
 
     }
 
-    public int getRemMon() {
+    public double getRemMon() {
         return remMon;
     }
 
-    public void setRemMon(int remMon) {
+    public void setRemMon(double remMon) {
         this.remMon = remMon;
     }
 
@@ -33,11 +33,11 @@ public class User {
         this.name = name;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
