@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:textColor="@color/catTextName"
+            android:textColor="@color/darkgray"
             android:textSize="20sp" />
 
 
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textColor="@color/catTextSum"
+        android:textColor="@color/darkgray"
         android:textSize="18sp" />
 
 </LinearLayout>
