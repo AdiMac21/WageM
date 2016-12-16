@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ProgressBar;
@@ -72,6 +73,15 @@ public class Dashboard extends AppCompatActivity {
                 Intent intent=new Intent(context,AddExpense.class);
                 intent.putExtra("categories",categories);
                 intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(context,CatDet.class);
+                intent.putExtra("category",categories.getCategories().get(position));
                 startActivity(intent);
             }
         });

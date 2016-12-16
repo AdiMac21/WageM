@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Expense implements Serializable {
     private String name;
-    private float cost;
+    private double cost;
     private Date date=new Date();
 
 
@@ -26,11 +26,11 @@ public class Expense implements Serializable {
         this.name = name;
     }
 
-    public float getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(float cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
