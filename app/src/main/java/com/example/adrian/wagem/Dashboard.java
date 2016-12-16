@@ -50,8 +50,8 @@ public class Dashboard extends AppCompatActivity {
         super.onResume();
         user=loadUser(context);
         categories=loadCat(context);
-        progressBar.setProgressColor(Color.parseColor("#36282B"));
-        progressBar.setBackgroundColor(Color.parseColor("#EAE9E9"));
+        progressBar.setProgressColor(Color.parseColor("#4267B2"));
+        progressBar.setBackgroundColor(Color.parseColor("#4E5665"));
         progressBar.setMax((float) user.getSalary());
         progressBar.setProgress((float) user.getRemMon());
     }
@@ -61,8 +61,8 @@ public class Dashboard extends AppCompatActivity {
         CatGridAdapter adapter = new CatGridAdapter(Dashboard.this, categories);
         gridView.setAdapter(adapter);
         progressBar = (RoundCornerProgressBar) findViewById(R.id.progressBar);
-        progressBar.setProgressColor(Color.parseColor("#36282B"));
-        progressBar.setBackgroundColor(Color.parseColor("#EAE9E9"));
+        progressBar.setProgressColor(Color.parseColor("#4267B2"));
+        progressBar.setBackgroundColor(Color.parseColor("#4E5665"));
         progressBar.setMax((float) user.getSalary());
         progressBar.setProgress((float) user.getRemMon());
         buttonAdd= (Button) findViewById(R.id.button_add);

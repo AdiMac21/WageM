@@ -63,13 +63,13 @@ public class AddExpense extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user.setRemMon(-Double.parseDouble(cost.getText().toString()));
+                user.setRemMon(user.getRemMon()-Double.parseDouble(cost.getText().toString()));
                 SharedPreferences.Editor editor = getSharedPreferences(Dashboard.MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putFloat("remMon", (float) user.getRemMon());
                 editor.commit();
                 Expense expense=new Expense(name.getText().toString(),Float.parseFloat(cost.getText().toString()));
                 categories.getCategories().get(positionA).getItems().add(expense);
-                categories.getCategories().get(positionA).setSum(+Double.parseDouble(cost.getText().toString()));
+                categories.getCategories().get(positionA).setSum(categories.getCategories().get(positionA).getSum()+Double.parseDouble(cost.getText().toString()));
                 LoadSave.saveCat(AddExpense.this,categories);
                 Intent intent=new Intent(AddExpense.this,Dashboard.class);
                 startActivity(intent);

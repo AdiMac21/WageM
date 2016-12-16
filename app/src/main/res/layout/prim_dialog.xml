@@ -3,53 +3,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
+    android:background="@color/somewhite"
     >
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="20dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
+    android:background="@drawable/background">
 
     <TextView
         android:text="Input name bellow:"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:id="@+id/textView"
+
+        android:layout_marginBottom="5dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/name_tf" />
+        android:ems="15"
+        android:id="@+id/name_tf"
+        android:background="@drawable/background"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:text="Input salary bellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+
+        android:layout_marginBottom="5dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/salary_tf" />
+        android:id="@+id/salary_tf"
+        android:background="@drawable/background"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:text="Day of the month you get paid(eg. 10, 15, 30)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+
+        android:layout_marginBottom="5dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/day_tf" />
+        android:id="@+id/day_tf"
+        android:background="@drawable/background"
+        android:layout_marginBottom="30dp"/>
 
     <Button
         android:text="Finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_prim"
+        android:background="@drawable/background"
         android:elevation="0dp" />
+
+
+</LinearLayout>
+
 
 </LinearLayout>
