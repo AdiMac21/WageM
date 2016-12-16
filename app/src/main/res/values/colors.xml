@@ -3,6 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="catTextName">#282B36</color>
-    <color name="catTextSum">#36282B</color>
+    <color name="mostwhite">#F6F7F9</color>
+    <color name="somewhite">#E9EBEE</color>
+    <color name="gray">#D0D1D5</color>
+    <color name="darkgray">#4E5665</color>
+    <color name="blue">#4267B2</color>
+
 </resources>
