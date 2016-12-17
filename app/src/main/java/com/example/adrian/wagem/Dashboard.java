@@ -90,6 +90,9 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(context, CatDet.class);
+                intent.putExtra("categories",categories);
+                intent.putExtra("position",position);
+                intent.putExtra("user",user);
                 intent.putExtra("category", categories.getCategories().get(position));
                 startActivity(intent);
             }
