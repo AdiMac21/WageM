@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".OneTime" />
         <activity android:name=".AddExpense" />
-        <activity android:name=".CatDet"></activity>
+        <activity android:name=".CatDet" />
+        <activity android:name=".EditExpense"></activity>
     </application>
 
 </manifest>

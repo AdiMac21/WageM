@@ -47,23 +47,17 @@ public class CatGridAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View gridView=new View(context);
+        View gridView;
         if (convertView == null) {
-            if (categories.getCategories().get(position).getItems().size() > 0) {
 
-
-                gridView = inflater.inflate(R.layout.grid_layout, null);
-                ImageView catImage = (ImageView) gridView.findViewById(R.id.cat_iv);
-                TextView catName = (TextView) gridView.findViewById(R.id.catname_tv);
-                TextView catSum = (TextView) gridView.findViewById(R.id.catsum_tv);
-                Uri uri = Uri.parse(categories.getCategories().get(position).getIconName());
-                catImage.setImageURI(uri);
-                catName.setText(categories.getCategories().get(position).getName());
-                catSum.setText(String.valueOf(categories.getCategories().get(position).getSum())+" RON");
-
-            }else{
-                gridView.setVisibility(View.GONE);
-            }
+            gridView = inflater.inflate(R.layout.grid_layout, null);
+            ImageView catImage = (ImageView) gridView.findViewById(R.id.cat_iv);
+            TextView catName = (TextView) gridView.findViewById(R.id.catname_tv);
+            TextView catSum = (TextView) gridView.findViewById(R.id.catsum_tv);
+            Uri uri = Uri.parse(categories.getCategories().get(position).getIconName());
+            catImage.setImageURI(uri);
+            catName.setText(categories.getCategories().get(position).getName());
+            catSum.setText(String.valueOf(categories.getCategories().get(position).getSum()) + " RON");
 
 
         } else {

@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.example.adrian.wagem.Adapters.CatGridAdapter;
@@ -29,6 +30,9 @@ public class Dashboard extends AppCompatActivity {
     private Categories categories;
     private GridView gridView;
     private RoundCornerProgressBar progressBar;
+    private TextView allMoney;
+    private TextView minusMoney;
+    private TextView resultMoney;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,42 +41,47 @@ public class Dashboard extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         String restoredText = prefs.getString("categories", null);
         if (restoredText == null) {
-            Intent intent=new Intent(context,OneTime.class);
+            Intent intent = new Intent(context, OneTime.class);
             startActivity(intent);
         }
 
-        user=loadUser(context);
-        categories=loadCat(context);
+        user = loadUser(context);
+        categories = loadCat(context);
         linkUi();
+        moneyTV();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        user=loadUser(context);
-        categories=loadCat(context);
+        user = loadUser(context);
+        categories = loadCat(context);
         progressBar.setProgressColor(Color.parseColor("#4267B2"));
         progressBar.setBackgroundColor(Color.parseColor("#E9EBEE"));
         progressBar.setMax((float) user.getSalary());
         progressBar.setProgress((float) user.getRemMon());
+        moneyTV();
     }
 
     private void linkUi() {
         gridView = (GridView) findViewById(R.id.grid);
         CatGridAdapter adapter = new CatGridAdapter(Dashboard.this, categories);
         gridView.setAdapter(adapter);
+        allMoney = (TextView) findViewById(R.id.all_money_tv);
+        minusMoney = (TextView) findViewById(R.id.money_spet_tv);
+        resultMoney = (TextView) findViewById(R.id.rem_money_tv);
         progressBar = (RoundCornerProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgressColor(Color.parseColor("#4267B2"));
         progressBar.setBackgroundColor(Color.parseColor("#E9EBEE"));
         progressBar.setMax((float) user.getSalary());
         progressBar.setProgress((float) user.getRemMon());
-        buttonAdd= (Button) findViewById(R.id.button_add);
+        buttonAdd = (Button) findViewById(R.id.button_add);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,AddExpense.class);
-                intent.putExtra("categories",categories);
-                intent.putExtra("user",user);
+                Intent intent = new Intent(context, AddExpense.class);
+                intent.putExtra("categories", categories);
+                intent.putExtra("user", user);
                 startActivity(intent);
             }
         });
@@ -80,8 +89,8 @@ public class Dashboard extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(context,CatDet.class);
-                intent.putExtra("category",categories.getCategories().get(position));
+                Intent intent = new Intent(context, CatDet.class);
+                intent.putExtra("category", categories.getCategories().get(position));
                 startActivity(intent);
             }
         });
@@ -89,9 +98,11 @@ public class Dashboard extends AppCompatActivity {
     }
 
 
-
-
-
+    private void moneyTV() {
+        allMoney.setText(String.valueOf(user.getSalary()));
+        minusMoney.setText(String.valueOf(user.getRemMon() - user.getSalary()));
+        resultMoney.setText(String.valueOf(user.getRemMon()));
+    }
 
 
 }
