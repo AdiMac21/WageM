@@ -52,7 +52,7 @@ public class Dashboard extends AppCompatActivity {
         user=loadUser(context);
         categories=loadCat(context);
         progressBar.setProgressColor(Color.parseColor("#4267B2"));
-        progressBar.setBackgroundColor(Color.parseColor("#4E5665"));
+        progressBar.setBackgroundColor(Color.parseColor("#E9EBEE"));
         progressBar.setMax((float) user.getSalary());
         progressBar.setProgress((float) user.getRemMon());
     }
@@ -63,7 +63,7 @@ public class Dashboard extends AppCompatActivity {
         gridView.setAdapter(adapter);
         progressBar = (RoundCornerProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgressColor(Color.parseColor("#4267B2"));
-        progressBar.setBackgroundColor(Color.parseColor("#4E5665"));
+        progressBar.setBackgroundColor(Color.parseColor("#E9EBEE"));
         progressBar.setMax((float) user.getSalary());
         progressBar.setProgress((float) user.getRemMon());
         buttonAdd= (Button) findViewById(R.id.button_add);

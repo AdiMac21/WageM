@@ -32,9 +32,42 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:rcBackgroundPadding="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
 
 
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:id="@+id/all_money_tv"
+           />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:textSize="16sp"
+            android:id="@+id/money_spet_tv"
+            android:textColor="@color/colorAccent"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/line"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/rem_money_tv"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/blue"
+           />
 
     </LinearLayout>
 

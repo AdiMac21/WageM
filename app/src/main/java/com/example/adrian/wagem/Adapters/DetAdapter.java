@@ -54,7 +54,7 @@ public class DetAdapter extends BaseAdapter {
             TextView cost = (TextView) rowView.findViewById(R.id.det_cost);
             TextView date = (TextView) rowView.findViewById(R.id.det_date);
             name.setText(category.getItems().get(position).getName());
-            cost.setText(String.valueOf(category.getItems().get(position).getCost()));
+            cost.setText("Cost: "+String.valueOf(category.getItems().get(position).getCost()));
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String dateString=dateFormat.format(category.getItems().get(position).getDate());
             date.setText(dateString);
@@ -64,7 +64,7 @@ public class DetAdapter extends BaseAdapter {
         }
 
 
-        return convertView;
+        return rowView;
 
 
     }
