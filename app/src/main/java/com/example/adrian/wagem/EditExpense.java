@@ -17,6 +17,7 @@ import com.example.adrian.wagem.Model.User;
 import com.example.adrian.wagem.Util.LoadSave;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EditExpense extends AppCompatActivity {
     private Categories categories;
@@ -30,6 +31,7 @@ public class EditExpense extends AppCompatActivity {
     private int positionA;
     private int positionCat;
     private int positionItem;
+    private double lastcost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,8 @@ public class EditExpense extends AppCompatActivity {
         Intent intent = getIntent();
         categories = (Categories) intent.getSerializableExtra("categories");
         user = (User) intent.getSerializableExtra("user");
-        positionCat=intent.getIntExtra("positionCat",0);
-        positionItem=intent.getIntExtra("positionItem",0);
+        positionCat = intent.getIntExtra("positionCat", 0);
+        positionItem = intent.getIntExtra("positionItem", 0);
         linkUI();
         for (int i = 0; i < categories.getCategories().size(); i++) {
             listStrings.add(categories.getCategories().get(i).getName());
@@ -52,7 +54,7 @@ public class EditExpense extends AppCompatActivity {
 
     private void linkUI() {
         edit = (Button) findViewById(R.id.button_editexpense);
-        delete= (Button) findViewById(R.id.button_deleteexpense);
+        delete = (Button) findViewById(R.id.button_deleteexpense);
         name = (EditText) findViewById(R.id.editText_name_edit);
         cost = (EditText) findViewById(R.id.editText_cost_edit);
         dropdown = (Spinner) findViewById(R.id.spinner_edit);
@@ -73,18 +75,46 @@ public class EditExpense extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user.setRemMon(user.getRemMon()+Double.parseDouble(cost.getText().toString()));
+                user.setRemMon(user.getRemMon() + Double.parseDouble(cost.getText().toString()));
                 SharedPreferences.Editor editor = getSharedPreferences(Dashboard.MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putFloat("remMon", (float) user.getRemMon());
                 editor.commit();
-                categories.getCategories().get(positionCat).setSum(categories.getCategories().get(positionCat).getSum()-Double.parseDouble(cost.getText().toString()));
+                categories.getCategories().get(positionCat).setSum(categories.getCategories().get(positionCat).getSum() - categories.getCategories().get(positionCat).getItems().get(positionItem).getCost());
                 categories.getCategories().get(positionCat).getItems().remove(positionItem);
-//                Expense expense=new Expense(name.getText().toString(),Float.parseFloat(cost.getText().toString()));
-//                categories.getCategories().get(positionA).getItems().add(expense);
-//                categories.getCategories().get(positionA).setSum(categories.getCategories().get(positionA).getSum()+Double.parseDouble(cost.getText().toString()));
-                LoadSave.saveCat(EditExpense.this,categories);
-                Intent intent=new Intent(EditExpense.this,Dashboard.class);
+                LoadSave.saveCat(EditExpense.this, categories);
+                Intent intent = new Intent(EditExpense.this, Dashboard.class);
                 startActivity(intent);
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lastcost = categories.getCategories().get(positionCat).getItems().get(positionItem).getCost();
+                double newcost = lastcost - Double.parseDouble(cost.getText().toString());
+                user.setRemMon(user.getRemMon() + newcost);
+                SharedPreferences.Editor editor = getSharedPreferences(Dashboard.MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putFloat("remMon", (float) user.getRemMon());
+                editor.commit();
+                if (dropdown.getSelectedItemPosition() == positionCat) {
+                    categories.getCategories().get(positionCat).setSum(categories.getCategories().get(positionCat).getSum() + newcost);
+                    categories.getCategories().get(positionCat).getItems().get(positionItem).setName(name.getText().toString());
+                    categories.getCategories().get(positionCat).getItems().get(positionItem).setCost(Double.parseDouble(cost.getText().toString()));
+                    LoadSave.saveCat(EditExpense.this, categories);
+                    Intent intent = new Intent(EditExpense.this, Dashboard.class);
+                    startActivity(intent);
+                } else {
+                    categories.getCategories().get(positionCat).setSum(categories.getCategories().get(positionCat).getSum() - categories.getCategories().get(positionCat).getItems().get(positionItem).getCost());
+                    Date date = categories.getCategories().get(positionCat).getItems().get(positionItem).getDate();
+                    categories.getCategories().get(positionCat).getItems().remove(positionItem);
+                    Expense expense = new Expense(name.getText().toString(), Float.parseFloat(cost.getText().toString()));
+                    expense.setDate(date);
+                    categories.getCategories().get(positionA).getItems().add(expense);
+                    categories.getCategories().get(positionA).setSum(categories.getCategories().get(positionA).getSum() + Double.parseDouble(cost.getText().toString()));
+                    LoadSave.saveCat(EditExpense.this, categories);
+                    Intent intent = new Intent(EditExpense.this, Dashboard.class);
+                    startActivity(intent);
+                }
             }
         });
 
