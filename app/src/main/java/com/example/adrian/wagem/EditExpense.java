@@ -97,7 +97,7 @@ public class EditExpense extends AppCompatActivity {
                 editor.putFloat("remMon", (float) user.getRemMon());
                 editor.commit();
                 if (dropdown.getSelectedItemPosition() == positionCat) {
-                    categories.getCategories().get(positionCat).setSum(categories.getCategories().get(positionCat).getSum() + newcost);
+                    categories.getCategories().get(positionCat).setSum(categories.getCategories().get(positionCat).getSum() - newcost);
                     categories.getCategories().get(positionCat).getItems().get(positionItem).setName(name.getText().toString());
                     categories.getCategories().get(positionCat).getItems().get(positionItem).setCost(Double.parseDouble(cost.getText().toString()));
                     LoadSave.saveCat(EditExpense.this, categories);
