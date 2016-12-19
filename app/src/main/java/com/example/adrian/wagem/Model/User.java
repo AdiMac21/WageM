@@ -11,12 +11,22 @@ public class User implements Serializable {
     private double salary;
     private int day;
     private double remMon;
+    private double totalMoney;
 
     public User(String name, double salary, int day) {
         this.name = name;
         this.salary = salary;
         this.day = day;
 
+
+    }
+
+    public double getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(double totalMoney) {
+        this.totalMoney = totalMoney;
     }
 
     public double getRemMon() {

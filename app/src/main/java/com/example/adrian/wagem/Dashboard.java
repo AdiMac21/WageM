@@ -43,12 +43,15 @@ public class Dashboard extends AppCompatActivity {
         if (restoredText == null) {
             Intent intent = new Intent(context, OneTime.class);
             startActivity(intent);
+        } else {
+
+            user = loadUser(context);
+            categories = loadCat(context);
+            linkUi();
+            moneyTV();
         }
 
-        user = loadUser(context);
-        categories = loadCat(context);
-        linkUi();
-        moneyTV();
+
     }
 
     @Override
@@ -58,7 +61,7 @@ public class Dashboard extends AppCompatActivity {
         categories = loadCat(context);
         progressBar.setProgressColor(Color.parseColor("#4267B2"));
         progressBar.setBackgroundColor(Color.parseColor("#E9EBEE"));
-        progressBar.setMax((float) user.getSalary());
+        progressBar.setMax((float) user.getTotalMoney());
         progressBar.setProgress((float) user.getRemMon());
         moneyTV();
     }
@@ -73,7 +76,7 @@ public class Dashboard extends AppCompatActivity {
         progressBar = (RoundCornerProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgressColor(Color.parseColor("#4267B2"));
         progressBar.setBackgroundColor(Color.parseColor("#E9EBEE"));
-        progressBar.setMax((float) user.getSalary());
+        progressBar.setMax((float) user.getTotalMoney());
         progressBar.setProgress((float) user.getRemMon());
         buttonAdd = (Button) findViewById(R.id.button_add);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
@@ -90,9 +93,9 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(context, CatDet.class);
-                intent.putExtra("categories",categories);
-                intent.putExtra("position",position);
-                intent.putExtra("user",user);
+                intent.putExtra("categories", categories);
+                intent.putExtra("position", position);
+                intent.putExtra("user", user);
                 intent.putExtra("category", categories.getCategories().get(position));
                 startActivity(intent);
             }
@@ -102,8 +105,8 @@ public class Dashboard extends AppCompatActivity {
 
 
     private void moneyTV() {
-        allMoney.setText(String.valueOf(user.getSalary()));
-        minusMoney.setText(String.valueOf(user.getRemMon() - user.getSalary()));
+        allMoney.setText(String.valueOf(user.getTotalMoney()));
+        minusMoney.setText(String.valueOf(user.getRemMon() - user.getTotalMoney()));
         resultMoney.setText(String.valueOf(user.getRemMon()));
     }
 

@@ -72,9 +72,10 @@ public class OneTime extends AppCompatActivity {
     private void saveUser(){
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putString("name", name.getText().toString());
-        editor.putFloat("salary", Integer.parseInt(salary.getText().toString()));
+        editor.putFloat("salary", Float.parseFloat(salary.getText().toString()));
         editor.putInt("day", Integer.parseInt(day.getText().toString()));
-        editor.putFloat("remMon", Integer.parseInt(salary.getText().toString()));
+        editor.putFloat("remMon", Float.parseFloat(salary.getText().toString()));
+        editor.putFloat("totalMoney", Float.parseFloat(salary.getText().toString()));
         editor.commit();
     }
 

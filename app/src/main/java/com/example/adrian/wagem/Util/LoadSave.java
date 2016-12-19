@@ -37,6 +37,7 @@ public class LoadSave {
         int day = prefs.getInt("day", 1);
         User user = new User(name, salary, day);
         user.setRemMon(prefs.getFloat("remMon", 0));
+        user.setTotalMoney(prefs.getFloat("totalMoney",0));
         return user;
     }
 }
