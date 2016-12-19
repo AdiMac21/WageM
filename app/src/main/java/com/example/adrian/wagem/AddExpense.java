@@ -71,8 +71,9 @@ public class AddExpense extends AppCompatActivity {
                 categories.getCategories().get(positionA).getItems().add(expense);
                 categories.getCategories().get(positionA).setSum(categories.getCategories().get(positionA).getSum()+Double.parseDouble(cost.getText().toString()));
                 LoadSave.saveCat(AddExpense.this,categories);
-                Intent intent=new Intent(AddExpense.this,Dashboard.class);
-                startActivity(intent);
+//                Intent intent=new Intent(AddExpense.this,Dashboard.class);
+//                startActivity(intent);
+                finish();
             }
         });
 
