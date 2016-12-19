@@ -52,20 +52,6 @@ public class OneTime extends AppCompatActivity {
     }
     private void generateCategories() {
         categories = new Categories();
-        Category foodAndBeverage = new Category("Food&Beverage", "android.resource://com.example.adrian.wagem/drawable/french_fries");
-        Category bills = new Category("Bills", "android.resource://com.example.adrian.wagem/drawable/atm");
-        Category healthAndFitness = new Category("Health&Fitness", "android.resource://com.example.adrian.wagem/drawable/dumbbell");
-        Category transportation = new Category("Transportation", "android.resource://com.example.adrian.wagem/drawable/taxi");
-        Category gifts = new Category("Gifts", "android.resource://com.example.adrian.wagem/drawable/ticket");
-        Category shopping = new Category("Shopping", "android.resource://com.example.adrian.wagem/drawable/shirt");
-        Category entertainment = new Category("Entertainment", "android.resource://com.example.adrian.wagem/drawable/gamepad");
-        categories.getCategories().add(foodAndBeverage);
-        categories.getCategories().add(bills);
-        categories.getCategories().add(healthAndFitness);
-        categories.getCategories().add(transportation);
-        categories.getCategories().add(gifts);
-        categories.getCategories().add(shopping);
-        categories.getCategories().add(entertainment);
         saveCat(context,categories);
 
     }
