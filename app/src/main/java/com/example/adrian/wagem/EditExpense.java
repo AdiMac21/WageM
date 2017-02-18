@@ -75,15 +75,16 @@ public class EditExpense extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user.setRemMon(user.getRemMon() + Double.parseDouble(cost.getText().toString()));
+                user.setRemMon(user.getRemMon() + (long) Double.parseDouble(cost.getText().toString())*100);
                 SharedPreferences.Editor editor = getSharedPreferences(Dashboard.MY_PREFS_NAME, MODE_PRIVATE).edit();
-                editor.putFloat("remMon", (float) user.getRemMon());
+                editor.putLong("remMon", user.getRemMon());
                 editor.commit();
                 categories.getCategories().get(positionCat).setSum(categories.getCategories().get(positionCat).getSum() - categories.getCategories().get(positionCat).getItems().get(positionItem).getCost());
                 categories.getCategories().get(positionCat).getItems().remove(positionItem);
                 LoadSave.saveCat(EditExpense.this, categories);
-                Intent intent = new Intent(EditExpense.this, Dashboard.class);
-                startActivity(intent);
+//                Intent intent = new Intent(EditExpense.this, Dashboard.class);
+//                startActivity(intent);
+                finish();
             }
         });
 

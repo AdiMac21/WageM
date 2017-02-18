@@ -8,12 +8,12 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private String name;
-    private double salary;
+    private long salary;
     private int day;
-    private double remMon;
-    private double totalMoney;
+    private long remMon;
+    private long totalMoney;
 
-    public User(String name, double salary, int day) {
+    public User(String name, long salary, int day) {
         this.name = name;
         this.salary = salary;
         this.day = day;
@@ -21,19 +21,19 @@ public class User implements Serializable {
 
     }
 
-    public double getTotalMoney() {
+    public long getTotalMoney() {
         return totalMoney;
     }
 
-    public void setTotalMoney(double totalMoney) {
+    public void setTotalMoney(long totalMoney) {
         this.totalMoney = totalMoney;
     }
 
-    public double getRemMon() {
+    public long getRemMon() {
         return remMon;
     }
 
-    public void setRemMon(double remMon) {
+    public void setRemMon(long remMon) {
         this.remMon = remMon;
     }
 
@@ -45,11 +45,11 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public double getSalary() {
+    public long getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(long salary) {
         this.salary = salary;
     }
 

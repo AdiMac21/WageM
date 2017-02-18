@@ -11,7 +11,7 @@ public class Category implements Serializable {
     private String name;
     private String iconName;
     private ArrayList<Expense> items=new ArrayList<>();
-    private double sum=0;
+    private long sum=0;
 
     public Category(String name, String iconName) {
         this.name = name;
@@ -23,11 +23,11 @@ public class Category implements Serializable {
     }
 
 
-    public double getSum() {
+    public long getSum() {
         return sum;
     }
 
-    public void setSum(double sum) {
+    public void setSum(long sum) {
         this.sum = sum;
     }
 

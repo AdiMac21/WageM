@@ -33,11 +33,11 @@ public class LoadSave {
         SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
 
         String name = prefs.getString("name", "No name defined");
-        double salary = prefs.getFloat("salary", 0);
+        long salary = prefs.getLong("salary", 0);
         int day = prefs.getInt("day", 1);
         User user = new User(name, salary, day);
-        user.setRemMon(prefs.getFloat("remMon", 0));
-        user.setTotalMoney(prefs.getFloat("totalMoney",0));
+        user.setRemMon(prefs.getLong("remMon", 0));
+        user.setTotalMoney(prefs.getLong("totalMoney",0));
         return user;
     }
 }
